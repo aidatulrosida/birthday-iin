@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu 🩷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#ffe3ee;
+    --blush-deep:#ffc2dc;
+    --rose:#ff6fa0;
+    --rose-deep:#e84f85;
+    --plum:#5c2a4d;
+    --plum-soft:#8a5878;
+    --cream:#fff8fb;
+    --gold:#e8b88a;
+    --lavender:#e7c6f2;
+
+    /* ukuran foto pembuka bisa diatur di sini */
+    --opening-main-width: 220px;
+    --opening-side-width: 88px;
+    --opening-ring-width: 320px;
+    --opening-ring-height: 260px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    height:100%;
+    font-family:'Quicksand', sans-serif;
+    background:var(--cream);
+    color:var(--plum);
+    overflow:hidden;
+  }
+  .page{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 1s ease;
+    overflow:hidden;
+  }
+  .page.active{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  /* ---------- floating petals (global) ---------- */
+  .petal{
+    position:absolute;
+    top:-10%;
+    font-size:22px;
+    user-select:none;
+    pointer-events:none;
+    animation:fall linear infinite;
+    opacity:0.85;
+    filter:drop-shadow(0 2px 3px rgba(232,79,133,0.15));
+  }
+  @keyframes fall{
+    0%{ transform:translateY(-10vh) translateX(0) rotate(0deg); }
+    100%{ transform:translateY(110vh) translateX(30px) rotate(360deg); }
+  }
+
+  /* ================= PAGE 1 ================= */
+  #page1{
+    background:radial-gradient(circle at 50% 20%, var(--blush) 0%, var(--blush-deep) 55%, #ffb3d1 100%);
+  }
+  .flower-ring{
+    position:relative;
+    width:var(--opening-ring-width);
+    height:var(--opening-ring-height);
+    margin-bottom:10px;
+  }
+  .flower-center-img{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:var(--opening-main-width);
+    max-width:72vw;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    transform:translate(-50%, -50%);
+    border-radius:0;
+    box-shadow:none;
+    background:none;
+    border:none;
+    animation:horizontalSway 2.8s ease-in-out infinite;
+    z-index:2;
+  }
+  .side-img{
+    position:absolute;
+    top:50%;
+    width:var(--opening-side-width);
+    height:auto;
+    object-fit:contain;
+    opacity:0.9;
+    filter:drop-shadow(0 8px 12px rgba(232,79,133,0.18));
+    z-index:1;
+    animation:horizontalSwaySide 2.8s ease-in-out infinite;
+    pointer-events:none;
+  }
+  .side-img.left{
+    left:14px;
+    transform:translateY(-50%) rotate(-12deg);
+  }
+  .side-img.right{
+    right:14px;
+    transform:translateY(-50%) rotate(12deg);
+  }
+  @keyframes horizontalSway{
+    0%,100%{ transform:translate(-50%, -50%) rotate(-3deg); }
+    50%{ transform:translate(-50%, -50%) rotate(3deg); }
+  }
+  @keyframes horizontalSwaySide{
+    0%,100%{ transform:translateY(-50%) rotate(calc(var(--tilt, 0deg) - 4deg)); }
+    50%{ transform:translateY(-50%) rotate(calc(var(--tilt, 0deg) + 4deg)); }
+  }
+  .hai-sayangku{
+    font-family:'Caveat', cursive;
+    font-size:64px;
+    color:var(--rose-deep);
+    text-shadow:0 2px 0 rgba(255,255,255,0.6);
+    animation:fadeUp 1.4s ease both;
+    animation-delay:0.3s;
+    opacity:0;
+  }
+  .sub1{
+    font-size:16px;
+    color:var(--plum-soft);
+    margin-top:6px;
+    letter-spacing:1px;
+    animation:fadeUp 1.4s ease both;
+    animation-delay:0.7s;
+    opacity:0;
+  }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .loader-bar{
+    margin-top:34px;
+    width:180px;
+    height:5px;
+    background:rgba(255,255,255,0.6);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .loader-fill{
+    height:100%;
+    width:0%;
+    background:var(--rose-deep);
+    border-radius:10px;
+    animation:fill 7s linear forwards;
+  }
+  @keyframes fill{ to{ width:100%; } }
+
+  /* ================= PAGE 2 (password) ================= */
+  #page2{
+    background:linear-gradient(160deg, #4a2140 0%, #7a3560 55%, #b95a86 100%);
+    color:var(--cream);
+  }
+  .lock-icon{
+    font-size:34px;
+    margin-bottom:14px;
+    animation:floaty 2.6s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+  .lock-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:22px;
+    margin-bottom:4px;
+    letter-spacing:0.5px;
+  }
+  .lock-sub{
+    font-size:13px;
+    color:#f4d9e8;
+    margin-bottom:26px;
+    letter-spacing:1px;
+  }
+  .dots{
+    display:flex;
+    gap:16px;
+    margin-bottom:32px;
+    height:16px;
+  }
+  .dot{
+    width:14px; height:14px;
+    border-radius:50%;
+    border:1.5px solid #ffdcec;
+    transition:all 0.2s ease;
+  }
+  .dot.filled{
+    background:#ffdcec;
+    transform:scale(1.1);
+  }
+  .dots.shake{
+    animation:shake 0.4s ease;
+  }
+  @keyframes shake{
+    0%,100%{ transform:translateX(0); }
+    20%{ transform:translateX(-10px); }
+    40%{ transform:translateX(10px); }
+    60%{ transform:translateX(-8px); }
+    80%{ transform:translateX(8px); }
+  }
+  .keypad{
+    display:grid;
+    grid-template-columns:repeat(3, 64px);
+    gap:16px;
+  }
+  .key{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.35);
+    background:rgba(255,255,255,0.08);
+    color:var(--cream);
+    font-size:22px;
+    font-family:'Quicksand', sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .key:active{
+    background:rgba(255,255,255,0.25);
+    transform:scale(0.94);
+  }
+  .key.empty{
+    visibility:hidden;
+  }
+  .hint{
+    margin-top:22px;
+    font-size:11.5px;
+    color:#e9bcd2;
+    letter-spacing:0.5px;
+  }
+
+  /* ================= PAGE 3 ================= */
+  #page3{
+    background:linear-gradient(180deg, #fff0f6 0%, #ffe0ee 100%);
+    padding:24px;
+    text-align:center;
+    overflow-y:auto;
+    justify-content:flex-start;
+    padding-top:40px;
+    padding-bottom:40px;
+  }
+  .p3-eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    color:var(--rose-deep);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .p3-title{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:clamp(28px, 6vw, 42px);
+    color:var(--plum);
+    line-height:1.2;
+    margin-bottom:6px;
+  }
+  .p3-title em{
+    color:var(--rose-deep);
+    font-style:italic;
+  }
+  .p3-text{
+    max-width:480px;
+    font-size:15px;
+    color:var(--plum-soft);
+    line-height:1.7;
+    margin:14px auto 22px;
+  }
+  .calendar{
+    max-width:260px;
+    margin:22px auto 26px;
+    background:#fff;
+    border-radius:12px;
+    padding:16px;
+    box-shadow:0 12px 30px -8px rgba(232,79,133,0.35);
+    border:2px solid rgba(255,183,209,0.4);
+    position:relative;
+  }
+  .calendar-header{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--rose-deep);
+    text-align:center;
+    margin-bottom:14px;
+    letter-spacing:1px;
+    position:relative;
+    padding-bottom:8px;
+  }
+  .calendar-header::before{
+    content:'🌸 ';
+    font-size:18px;
+  }
+  .calendar-header::after{
+    content:' 🌷';
+    font-size:18px;
+  }
+  .cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:6px;
+  }
+  .cal-dayname{
+    text-align:center;
+    font-weight:600;
+    font-size:11px;
+    color:var(--plum-soft);
+    padding:6px 0;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .cal-day{
+    aspect-ratio:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:500;
+    color:var(--plum-soft);
+    background:linear-gradient(135deg, #f5e5f0 0%, #fce8f3 100%);
+    border:1px solid rgba(255,183,209,0.3);
+    transition:all 0.2s ease;
+  }
+  .cal-day:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 8px -4px rgba(232,79,133,0.2);
+  }
+  .cal-day.empty{
+    background:transparent;
+    border:none;
+  }
+  .cal-day.marked{
+    background:linear-gradient(135deg, var(--rose-deep) 0%, #ff5a92 100%);
+    color:#fff;
+    font-weight:700;
+    position:relative;
+    box-shadow:0 6px 16px -4px rgba(232,79,133,0.4);
+    transform:scale(1.08);
+  }
+  .cal-day.marked:hover{
+    transform:scale(1.12) translateY(-2px);
+  }
+  .cal-day.marked::after{
+    content:'💕';
+    position:absolute;
+    font-size:10px;
+    top:-2px;
+    right:-2px;
+    animation:heartBeat 1.2s ease-in-out infinite;
+  }
+  @keyframes heartBeat{
+    0%,100%{ transform:scale(1); }
+    25%{ transform:scale(1.2); }
+    50%{ transform:scale(1); }
+  }
+  .polaroid{
+    background:#fff;
+    padding:12px 12px 40px;
+    border-radius:6px;
+    box-shadow:0 14px 30px -10px rgba(232,79,133,0.35);
+    transform:rotate(-4deg);
+    width:230px;
+    margin:0 auto 26px;
+  }
+  .polaroid .ph{
+    width:100%;
+    height:230px;
+    border-radius:2px;
+    background:linear-gradient(135deg, var(--blush-deep), var(--lavender));
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px;
+    color:var(--plum-soft);
+    text-align:center;
+    padding:10px;
+  }
+  .polaroid .ph-img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    border-radius:2px;
+    display:block;
+  }
+  .polaroid .cap{
+    font-family:'Caveat', cursive;
+    font-size:20px;
+    color:var(--rose-deep);
+    margin-top:10px;
+  }
+  .klik-btn{
+    border:none;
+    background:var(--rose-deep);
+    color:#fff;
+    padding:13px 40px;
+    border-radius:40px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:1px;
+    cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(232,79,133,0.55);
+    animation:btnPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes btnPulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.05); }
+  }
+  .klik-btn:active{ transform:scale(0.96); }
+
+  /* ================= PAGE 4 ================= */
+  #page4{
+    background:linear-gradient(180deg, #fff5fa 0%, #ffe6f1 100%);
+    justify-content:flex-start;
+    padding:30px 16px 130px;
+    overflow-y:auto;
+  }
+  #page4.active{ display:flex; }
+  .p4-header{
+    text-align:center;
+    margin-bottom:22px;
+    width:100%;
+    max-width:420px;
+    position:relative;
+  }
+  .back-btn{
+    position:absolute;
+    left:0; top:0;
+    border:none;
+    background:rgba(255,255,255,0.7);
+    color:var(--rose-deep);
+    width:36px; height:36px;
+    border-radius:50%;
+    font-size:16px;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 14px -6px rgba(140,60,100,0.4);
+  }
+  .back-btn:active{ transform:scale(0.92); }
+  .video-cta{
+    margin:26px 0 130px;
+    border:none;
+    background:var(--plum);
+    color:#fff;
+    padding:13px 34px;
+    border-radius:40px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(92,42,77,0.5);
+  }
+  .video-cta:active{ transform:scale(0.96); }
+
+  /* ================= PAGE 5 (video) ================= */
+  #page5{
+    background:#1a0e17;
+    padding:24px;
+  }
+  .video-wrap{
+    width:min(92%, 380px);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 20px 40px -12px rgba(0,0,0,0.5);
+    background:#000;
+  }
+  .video-wrap video{
+    width:100%;
+    display:block;
+    max-height:60vh;
+  }
+  .video-caption{
+    color:#ffd6e8;
+    font-family:'Caveat', cursive;
+    font-size:22px;
+    margin-top:16px;
+  }
+  .next-btn{
+    margin-top:26px;
+    border:none;
+    background:var(--rose-deep);
+    color:#fff;
+    padding:12px 34px;
+    border-radius:40px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(232,79,133,0.5);
+  }
+  .next-btn:active{ transform:scale(0.96); }
+
+  /* ================= PAGE 6 (penutup) ================= */
+  #page6{
+    background:radial-gradient(circle at 50% 30%, var(--blush) 0%, #ffb8d4 60%, #ff9dc2 100%);
+    text-align:center;
+    padding:24px;
+  }
+  .p6-heart{
+    font-size:44px;
+    margin-bottom:16px;
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  .p6-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:30px;
+    color:var(--rose-deep);
+    margin-bottom:12px;
+  }
+  .p6-text{
+    max-width:420px;
+    font-size:15px;
+    color:var(--plum-soft);
+    line-height:1.8;
+  }
+  .p6-sign{
+    margin-top:22px;
+    font-family:'Caveat', cursive;
+    font-size:24px;
+    color:var(--plum);
+  }
+  .p4-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:26px;
+    color:var(--rose-deep);
+  }
+  .p4-sub{
+    font-size:12.5px;
+    color:var(--plum-soft);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-top:4px;
+  }
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px 16px;
+    max-width:420px;
+    width:100%;
+  }
+  .frame{
+    background:#fff;
+    padding:8px 8px 24px;
+    border-radius:4px;
+    box-shadow:0 10px 22px -8px rgba(140,60,100,0.3);
+    position:relative;
+  }
+  .frame:nth-child(odd){ transform:rotate(-3deg); }
+  .frame:nth-child(even){ transform:rotate(3deg); }
+  .frame img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:2px;
+    display:block;
+    background:linear-gradient(135deg, var(--blush-deep), var(--lavender));
+  }
+  .frame .ph-placeholder{
+    width:100%;
+    height:150px;
+    border-radius:2px;
+    background:linear-gradient(135deg, var(--blush-deep), var(--lavender));
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--plum-soft);
+    font-size:11px;
+    text-align:center;
+    gap:6px;
+    padding:8px;
+  }
+  .frame .tape{
+    position:absolute;
+    top:-10px; left:50%;
+    transform:translateX(-50%) rotate(-2deg);
+    width:50px; height:18px;
+    background:rgba(255,193,222,0.7);
+    border:1px solid rgba(255,255,255,0.5);
+  }
+  .frame .cap{
+    font-family:'Caveat', cursive;
+    font-size:16px;
+    color:var(--rose-deep);
+    text-align:center;
+    margin-top:8px;
+  }
+
+  /* ---- music player bar ---- */
+  .player{
+    position:fixed;
+    left:50%;
+    bottom:16px;
+    transform:translateX(-50%);
+    width:min(92%, 380px);
+    background:rgba(60,25,48,0.92);
+    backdrop-filter:blur(6px);
+    border-radius:16px;
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 14px 30px -10px rgba(90,20,55,0.5);
+    z-index:50;
+  }
+  .disc{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, #ffb3d1, #e84f85, #7a3560, #ffb3d1);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    animation:spin 4s linear infinite paused;
+  }
+  .disc::after{
+    content:"";
+    width:14px; height:14px;
+    border-radius:50%;
+    background:#3c1930;
+  }
+  .disc.spinning{ animation-play-state:running; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .track-info{
+    flex:1;
+    min-width:0;
+  }
+  .track-title{
+    font-size:13.5px;
+    font-weight:600;
+    color:#fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .track-artist{
+    font-size:11px;
+    color:#e9bcd2;
+    margin-top:1px;
+  }
+  .progress-wrap{
+    flex:1;
+    height:3px;
+    background:rgba(255,255,255,0.25);
+    border-radius:4px;
+    margin-top:6px;
+    cursor:pointer;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:#ff8fb6;
+    border-radius:4px;
+  }
+  .play-btn{
+    width:38px; height:38px;
+    border-radius:50%;
+    border:none;
+    background:#ff6fa0;
+    color:#fff;
+    font-size:15px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .play-btn:active{ transform:scale(0.92); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- floating petals background -->
+<div id="petals"></div>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page active" id="page1">
+  <div class="flower-ring" id="flowerRing">
+    <img class="side-img left" src="awalan.jpeg" alt="dekor kiri" style="--tilt:-12deg;" loading="eager" onerror="this.style.display='none';">
+    <img class="flower-center-img" src="awalan.jpeg" alt="Awalan" loading="eager" onerror="this.style.display='none';">
+    <img class="side-img right" src="awalan.jpeg" alt="dekor kanan" style="--tilt:12deg;" loading="eager" onerror="this.style.display='none';">
+  </div>
+  <div class="hai-sayangku">Hai sayangku</div>
+  <div class="sub1">Preparing Something Special For You</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ============ PAGE 2 (password) ============ -->
+<div class="page" id="page2">
+  <div class="lock-icon">🔒</div>
+  <div class="lock-title">LOCKED</div>
+  <div class="lock-sub">Enter our secret code</div>
+  <div class="dots" id="dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="keypad" id="keypad">
+    <button class="key" data-k="1">1</button>
+    <button class="key" data-k="2">2</button>
+    <button class="key" data-k="3">3</button>
+    <button class="key" data-k="4">4</button>
+    <button class="key" data-k="5">5</button>
+    <button class="key" data-k="6">6</button>
+    <button class="key" data-k="7">7</button>
+    <button class="key" data-k="8">8</button>
+    <button class="key" data-k="9">9</button>
+    <button class="key empty"></button>
+    <button class="key" data-k="0">0</button>
+    <button class="key" data-k="del">⌫</button>
+  </div>
+  <div class="hint">tanggal spesialmu yakk 🎂</div>
+</div>
+
+<!-- ============ PAGE 3 ============ -->
+<div class="page" id="page3">
+  <div class="p3-eyebrow">For You</div>
+  <div class="p3-title">Happy Birthday<br><em>Iin Anggun</em></div>
+  <p class="p3-text">
+    happy birthday to the girl who never judges me, 
+    loves me no matter what,
+    matches my energy, makes me laugh without even trying, 
+    and feels like my other half. i love you more and more.
+  </p>
+  <div class="calendar">
+    <div class="calendar-header">September</div>
+    <div class="cal-grid">
+      <div class="cal-dayname">Sun</div>
+      <div class="cal-dayname">Mon</div>
+      <div class="cal-dayname">Tue</div>
+      <div class="cal-dayname">Wed</div>
+      <div class="cal-dayname">Thu</div>
+      <div class="cal-dayname">Fri</div>
+      <div class="cal-dayname">Sat</div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day">1</div>
+      <div class="cal-day">2</div>
+      <div class="cal-day">3</div>
+      <div class="cal-day">4</div>
+      <div class="cal-day">5</div>
+      <div class="cal-day">6</div>
+      <div class="cal-day">7</div>
+      <div class="cal-day">8</div>
+      <div class="cal-day">9</div>
+      <div class="cal-day">10</div>
+      <div class="cal-day">11</div>
+      <div class="cal-day marked">12</div>
+      <div class="cal-day">13</div>
+      <div class="cal-day">14</div>
+      <div class="cal-day">15</div>
+      <div class="cal-day">16</div>
+      <div class="cal-day">17</div>
+      <div class="cal-day">18</div>
+      <div class="cal-day">19</div>
+      <div class="cal-day">20</div>
+      <div class="cal-day">21</div>
+      <div class="cal-day">22</div>
+      <div class="cal-day">23</div>
+      <div class="cal-day">24</div>
+      <div class="cal-day">25</div>
+      <div class="cal-day">26</div>
+      <div class="cal-day">27</div>
+      <div class="cal-day">28</div>
+      <div class="cal-day">29</div>
+      <div class="cal-day">30</div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <img class="ph-img" src="logo.jpeg" alt="Litle Iin" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'📷<br>taruh file logo.jpeg di folder yang sama'}))">
+    <div class="cap">my favorite bestie</div>
+  </div>
+  <button class="klik-btn" id="klikBtn">Klik</button>
+</div>
+
+<!-- ============ PAGE 4 ============ -->
+<div class="page" id="page4">
+  <div class="p4-header">
+    <button class="back-btn" id="backBtn">←</button>
+    <div class="p4-title">Little Gallery</div>
+  </div>
+  <div class="gallery" id="gallery">
+    <!-- 30 frame foto di-generate otomatis lewat JS di bawah, cari FOTO_CAPTIONS untuk ganti nama file & caption -->
+  </div>
+
+  <button class="video-cta" id="videoCta">🎬 Lihat Video Kita</button>
+
+  <div class="player">
+    <div class="disc" id="disc"></div>
+    <div class="track-info">
+      <div class="track-title">Still The One</div>
+      <div class="track-artist">for you, today &amp; always</div>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <button class="play-btn" id="playBtn">▶</button>
+  </div>
+  <!-- letakkan file lagu "still-the-one.mp3" di folder yang sama dengan file HTML ini -->
+  <audio id="audio" src="still-the-one.mp3" preload="none"></audio>
+</div>
+
+<!-- ============ PAGE 5 (video) ============ -->
+<div class="page" id="page5">
+  <div class="video-wrap">
+    <!-- taruh file "video-kita.mp4" di folder yang sama dengan file HTML ini -->
+    <video id="mainVideo" controls playsinline poster="">
+      <source src="video-kita.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-caption">kenangan kita, diputar ulang ✨</div>
+  <button class="next-btn" id="toPenutup">Lanjut →</button>
+</div>
+
+<!-- ============ PAGE 6 (penutup) ============ -->
+<div class="page" id="page6">
+  <div class="p6-heart">🩷</div>
+  <div class="p6-title">Sekian dari aku</div>
+  <p class="p6-text">
+    Makasih udah mau baca dan buka semua ini sampai habis.
+    Semoga ulang tahun tahun ini jadi salah satu yang paling berkesan buat kamu.
+    Sehat terus, bahagia terus, dan sukses buat semua rencana kamu ke depan.
+    Selamat ulang tahun, sahabatku!
+  </p>
+  <div class="p6-sign">dari aku, buat kamu 🎉</div>
+</div>
+
+<script>
+  // ---------- floating petals ----------
+  const petalsContainer = document.getElementById('petals');
+  const petalEmojis = ['🌸','🌷','💮','🩷'];
+  for(let i=0;i<16;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (7 + Math.random()*8) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.fontSize = (16 + Math.random()*14) + 'px';
+    petalsContainer.appendChild(p);
+  }
+
+  // ---------- page navigation ----------
+  function goTo(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // auto move from page1 -> page2 after 7s
+  setTimeout(()=>{ goTo('page2'); }, 7000);
+
+  // ---------- password lock ----------
+  const CORRECT = "120904";
+  let entered = "";
+  const dotsEl = document.getElementById('dots');
+  const dots = dotsEl.querySelectorAll('.dot');
+
+  function renderDots(){
+    dots.forEach((d,i)=> d.classList.toggle('filled', i < entered.length));
+  }
+
+  document.getElementById('keypad').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.key');
+    if(!btn || btn.classList.contains('empty')) return;
+    const val = btn.dataset.k;
+
+    if(val === 'del'){
+      entered = entered.slice(0,-1);
+      renderDots();
+      return;
+    }
+
+    if(entered.length >= 6) return;
+    entered += val;
+    renderDots();
+
+    if(entered.length === 6){
+      setTimeout(()=>{
+        if(entered === CORRECT){
+          goTo('page3');
+        } else {
+          dotsEl.classList.add('shake');
+          setTimeout(()=>{
+            dotsEl.classList.remove('shake');
+            entered = "";
+            renderDots();
+          }, 400);
+        }
+      }, 200);
+    }
+  });
+
+  // ---------- generate 30 foto di galeri page 4 ----------
+  // File bisa berupa foto1.png / foto1.jpg / foto1.jpeg. Kalau mau ganti caption,
+  // edit list FOTO_CAPTIONS di bawah sesuai urutan foto.
+  const FOTO_CAPTIONS = [
+    "sweet","giggles","us","golden hour","besties","cutie","squad",
+    "candid","sunshine","laugh out loud","that day","soft moment",
+    "silly us","favorite view","warm hug","random pic","together",
+    "little joy","best day","aesthetic","real one","cheers",
+    "vibes","home","bestie forever","throwback","hangout",
+    "good times","memories","one of the best"
+  ];
+  const galleryEl = document.getElementById('gallery');
+  FOTO_CAPTIONS.forEach((cap, idx)=>{
+    const n = idx + 1;
+    const frame = document.createElement('div');
+    frame.className = 'frame';
+
+    const tape = document.createElement('div');
+    tape.className = 'tape';
+    frame.appendChild(tape);
+
+    const img = document.createElement('img');
+    img.alt = cap;
+    img.loading = 'lazy';
+
+    const candidates = [`foto${n}.png`, `foto${n}.jpg`, `foto${n}.jpeg`];
+    let fileIndex = 0;
+
+    const tryLoadNext = function(){
+      if(fileIndex >= candidates.length){
+        const ph = document.createElement('div');
+        ph.className = 'ph-placeholder';
+        ph.innerHTML = `📷<br>foto ${n}`;
+        img.replaceWith(ph);
+        return;
+      }
+
+      img.src = candidates[fileIndex];
+      fileIndex += 1;
+    };
+
+    img.onerror = tryLoadNext;
+    tryLoadNext();
+    frame.appendChild(img);
+
+    const capEl = document.createElement('div');
+    capEl.className = 'cap';
+    capEl.textContent = cap;
+    frame.appendChild(capEl);
+
+    galleryEl.appendChild(frame);
+  });
+
+  // ---------- page3 -> page4 ----------
+  document.getElementById('klikBtn').addEventListener('click', ()=>{
+    goTo('page4');
+  });
+
+  // ---------- page4 -> back ke page3 ----------
+  document.getElementById('backBtn').addEventListener('click', ()=>{
+    goTo('page3');
+  });
+
+  // ---------- page4 -> page5 (video) ----------
+  document.getElementById('videoCta').addEventListener('click', ()=>{
+    goTo('page5');
+  });
+
+  // ---------- page5 -> page6 (penutup) ----------
+  document.getElementById('toPenutup').addEventListener('click', ()=>{
+    document.getElementById('mainVideo').pause();
+    goTo('page6');
+  });
+
+  // ---------- music player ----------
+  const audio = document.getElementById('audio');
+  const playBtn = document.getElementById('playBtn');
+  const disc = document.getElementById('disc');
+  const progressFill = document.getElementById('progressFill');
+  const progressWrap = document.getElementById('progressWrap');
+
+  playBtn.addEventListener('click', ()=>{
+    if(audio.paused){
+      audio.play().catch(()=>{
+        alert('Taruh file "still-the-one.mp3" di folder yang sama dengan file HTML ini ya, biar lagunya bisa diputar 🎵');
+      });
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', ()=>{
+    playBtn.textContent = '❚❚';
+    disc.classList.add('spinning');
+  });
+  audio.addEventListener('pause', ()=>{
+    playBtn.textContent = '▶';
+    disc.classList.remove('spinning');
+  });
+  audio.addEventListener('timeupdate', ()=>{
+    if(audio.duration){
+      progressFill.style.width = (audio.currentTime/audio.duration*100) + '%';
+    }
+  });
+  progressWrap.addEventListener('click', (e)=>{
+    const rect = progressWrap.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    if(audio.duration){ audio.currentTime = ratio * audio.duration; }
+  });
+</script>
+</body>
+</html>
