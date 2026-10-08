@@ -830,6 +830,29 @@
   let entered = "";
   const dotsEl = document.getElementById('dots');
   const dots = dotsEl.querySelectorAll('.dot');
+  let audioContext;
+
+  function playKeySound(){
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if(!AudioContextClass) return;
+
+    audioContext ??= new AudioContextClass();
+    const now = audioContext.currentTime;
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(760, now);
+    oscillator.frequency.exponentialRampToValueAtTime(980, now + 0.08);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.08, now + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start(now);
+    oscillator.stop(now + 0.13);
+  }
 
   function renderDots(){
     dots.forEach((d,i)=> d.classList.toggle('filled', i < entered.length));
@@ -847,6 +870,7 @@
     }
 
     if(entered.length >= 6) return;
+    playKeySound();
     entered += val;
     renderDots();
 
