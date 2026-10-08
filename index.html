@@ -832,26 +832,38 @@
   const dots = dotsEl.querySelectorAll('.dot');
   let audioContext;
 
-  function playKeySound(){
+  function playTone(frequencies, duration, volume){
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if(!AudioContextClass) return;
 
     audioContext ??= new AudioContextClass();
     const now = audioContext.currentTime;
-    const oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
 
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(760, now);
-    oscillator.frequency.exponentialRampToValueAtTime(980, now + 0.08);
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.08, now + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+    frequencies.forEach((frequency, index) => {
+      const toneStart = now + index * 0.075;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
 
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
-    oscillator.start(now);
-    oscillator.stop(now + 0.13);
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(frequency, toneStart);
+      oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.92, toneStart + duration * 0.7);
+      gain.gain.setValueAtTime(0.0001, toneStart);
+      gain.gain.exponentialRampToValueAtTime(volume, toneStart + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, toneStart + duration);
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start(toneStart);
+      oscillator.stop(toneStart + duration + 0.01);
+    });
+  }
+
+  function playKeySound(){
+    playTone([760, 920, 1080], 0.1, 0.12);
+  }
+
+  function playDeleteSound(){
+    playTone([520, 430], 0.11, 0.1);
   }
 
   function renderDots(){
@@ -864,6 +876,7 @@
     const val = btn.dataset.k;
 
     if(val === 'del'){
+      playDeleteSound();
       entered = entered.slice(0,-1);
       renderDots();
       return;
