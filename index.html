@@ -497,16 +497,18 @@
     padding:24px;
   }
   .video-wrap{
-    width:min(92%, 380px);
+    width:min(92%, 760px);
+    aspect-ratio:16/9;
     border-radius:14px;
     overflow:hidden;
     box-shadow:0 20px 40px -12px rgba(0,0,0,0.5);
     background:#000;
   }
-  .video-wrap video{
+  .video-wrap iframe{
     width:100%;
+    height:100%;
     display:block;
-    max-height:60vh;
+    border:0;
   }
   .video-caption{
     color:#ffd6e8;
@@ -790,10 +792,13 @@
 <!-- ============ PAGE 5 (video) ============ -->
 <div class="page" id="page5">
   <div class="video-wrap">
-    <!-- taruh file "video-kita.mp4" di folder yang sama dengan file HTML ini -->
-    <video id="mainVideo" controls playsinline poster="">
-      <source src="video-kita.mp4" type="video/mp4">
-    </video>
+    <iframe
+      id="mainVideo"
+      src="https://drive.google.com/file/d/1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe/view?usp=drivesdk"
+      title="Video kenangan kita"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
   </div>
   <div class="video-caption">kenangan kita, diputar ulang ✨</div>
   <button class="next-btn" id="toPenutup">Lanjut →</button>
@@ -981,7 +986,6 @@
 
   // ---------- page5 -> page6 (penutup) ----------
   document.getElementById('toPenutup').addEventListener('click', ()=>{
-    document.getElementById('mainVideo').pause();
     goTo('page6');
   });
 </script>
