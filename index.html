@@ -280,7 +280,13 @@
     font-size:15px;
     color:var(--plum-soft);
     line-height:1.7;
-    margin:14px auto 22px;
+    margin:0 auto 22px;
+    padding:18px 22px;
+    background:rgba(255,255,255,0.7);
+    border:1px solid rgba(255,183,209,0.45);
+    border-radius:16px;
+    box-shadow:0 10px 30px -18px rgba(232,79,133,0.6);
+    backdrop-filter:blur(5px);
   }
   .calendar{
     max-width:260px;
@@ -370,38 +376,55 @@
     25%{ transform:scale(1.2); }
     50%{ transform:scale(1); }
   }
-  .polaroid{
-    background:#fff;
-    padding:12px 12px 40px;
-    border-radius:6px;
-    box-shadow:0 14px 30px -10px rgba(232,79,133,0.35);
-    transform:rotate(-4deg);
-    width:230px;
+  .sticker-photo{
+    width:min(42vw, 150px);
+    height:min(42vw, 150px);
     margin:0 auto 26px;
+    position:relative;
+    z-index:2;
+    filter:drop-shadow(0 14px 18px rgba(232,79,133,0.25));
+    animation:stickerFloat 4s ease-in-out infinite;
   }
-  .polaroid .ph{
+  .sticker-photo img{
     width:100%;
-    height:230px;
-    border-radius:2px;
-    background:linear-gradient(135deg, var(--blush-deep), var(--lavender));
-    display:flex; align-items:center; justify-content:center;
-    font-size:13px;
-    color:var(--plum-soft);
-    text-align:center;
-    padding:10px;
-  }
-  .polaroid .ph-img{
-    width:100%;
-    height:230px;
-    object-fit:cover;
-    border-radius:2px;
+    height:100%;
+    object-fit:contain;
     display:block;
+    border-radius:50%;
   }
-  .polaroid .cap{
-    font-family:'Caveat', cursive;
-    font-size:20px;
-    color:var(--rose-deep);
-    margin-top:10px;
+  @keyframes stickerFloat{
+    0%,100%{ transform:translateY(0) rotate(-3deg) scale(1); }
+    25%{ transform:translateY(-9px) rotate(3deg) scale(1.025); }
+    50%{ transform:translateY(0) rotate(-2deg) scale(1); }
+    75%{ transform:translateY(7px) rotate(4deg) scale(1.02); }
+  }
+  .side-sticker{
+    position:absolute;
+    top:22%;
+    width:clamp(50px, 12vw, 76px);
+    height:clamp(50px, 12vw, 76px);
+    z-index:1;
+    opacity:0.85;
+    filter:drop-shadow(0 7px 10px rgba(232,79,133,0.2));
+    pointer-events:none;
+  }
+  .side-sticker.left{
+    left:calc(50% - 125px);
+    top:31%;
+    animation:sideStickerLeft 4s ease-in-out infinite;
+  }
+  .side-sticker.right{
+    right:calc(50% - 125px);
+    top:31%;
+    animation:sideStickerRight 4.6s ease-in-out infinite;
+  }
+  @keyframes sideStickerLeft{
+    0%,100%{ transform:translateY(0) rotate(-9deg); }
+    50%{ transform:translateY(-13px) rotate(8deg); }
+  }
+  @keyframes sideStickerRight{
+    0%,100%{ transform:translateY(0) rotate(9deg); }
+    50%{ transform:translateY(11px) rotate(-8deg); }
   }
   .klik-btn{
     border:none;
@@ -509,34 +532,74 @@
 
   /* ================= PAGE 6 (penutup) ================= */
   #page6{
-    background:radial-gradient(circle at 50% 30%, var(--blush) 0%, #ffb8d4 60%, #ff9dc2 100%);
+    background:transparent;
     text-align:center;
-    padding:24px;
+    padding:20px 24px;
+    overflow-y:auto;
   }
-  .p6-heart{
-    font-size:44px;
-    margin-bottom:16px;
-    animation:pulse 2.2s ease-in-out infinite;
+  .p6-logo{
+    width:min(34vw, 150px);
+    aspect-ratio:1;
+    display:block;
+    margin:0 auto 12px;
+    object-fit:contain;
+    filter:drop-shadow(0 12px 16px rgba(126,45,91,0.22));
+    animation:p6LogoSway 2.8s ease-in-out infinite;
+  }
+  @keyframes p6LogoSway{
+    0%,100%{ transform:rotate(-3deg) scale(1); }
+    50%{ transform:rotate(3deg) scale(1.025); }
   }
   .p6-title{
     font-family:'Playfair Display', serif;
     font-style:italic;
     font-weight:700;
-    font-size:30px;
+    font-size:clamp(30px, 6vw, 42px);
     color:var(--rose-deep);
-    margin-bottom:12px;
+    margin-bottom:14px;
   }
-  .p6-text{
-    max-width:420px;
-    font-size:15px;
-    color:var(--plum-soft);
-    line-height:1.8;
+  .p6-polaroids{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:18px;
   }
-  .p6-sign{
-    margin-top:22px;
+  .p6-polaroid{
+    width:min(43vw, 205px);
+    aspect-ratio:1;
+    padding:9px 9px 28px;
+    background:#fff;
+    border-radius:3px;
+    box-shadow:0 18px 36px -20px rgba(106,35,78,0.7);
+    transform:rotate(-3deg);
+  }
+  .p6-polaroid:nth-child(2){
+    transform:rotate(4deg) translateX(14px);
+  }
+  .p6-polaroid img{
+    width:100%;
+    height:calc(100% - 19px);
+    display:block;
+    object-fit:cover;
+    border-radius:2px;
+  }
+  .p6-thanks{
+    max-width:460px;
     font-family:'Caveat', cursive;
-    font-size:24px;
-    color:var(--plum);
+    font-size:clamp(28px, 5.5vw, 38px);
+    font-weight:700;
+    color:#e84f85;
+    line-height:1.25;
+  }
+  .p6-handle{
+    margin-top:8px;
+    font-family:'Quicksand', sans-serif;
+    font-size:13px;
+    font-weight:700;
+    color:var(--plum-soft);
+    letter-spacing:0.5px;
   }
   .p4-title{
     font-family:'Playfair Display', serif;
@@ -603,83 +666,6 @@
     margin-top:8px;
   }
 
-  /* ---- music player bar ---- */
-  .player{
-    position:fixed;
-    left:50%;
-    bottom:16px;
-    transform:translateX(-50%);
-    width:min(92%, 380px);
-    background:rgba(60,25,48,0.92);
-    backdrop-filter:blur(6px);
-    border-radius:16px;
-    padding:10px 14px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow:0 14px 30px -10px rgba(90,20,55,0.5);
-    z-index:50;
-  }
-  .disc{
-    width:44px; height:44px;
-    border-radius:50%;
-    background:conic-gradient(from 0deg, #ffb3d1, #e84f85, #7a3560, #ffb3d1);
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-    animation:spin 4s linear infinite paused;
-  }
-  .disc::after{
-    content:"";
-    width:14px; height:14px;
-    border-radius:50%;
-    background:#3c1930;
-  }
-  .disc.spinning{ animation-play-state:running; }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
-  .track-info{
-    flex:1;
-    min-width:0;
-  }
-  .track-title{
-    font-size:13.5px;
-    font-weight:600;
-    color:#fff;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .track-artist{
-    font-size:11px;
-    color:#e9bcd2;
-    margin-top:1px;
-  }
-  .progress-wrap{
-    flex:1;
-    height:3px;
-    background:rgba(255,255,255,0.25);
-    border-radius:4px;
-    margin-top:6px;
-    cursor:pointer;
-  }
-  .progress-fill{
-    height:100%;
-    width:0%;
-    background:#ff8fb6;
-    border-radius:4px;
-  }
-  .play-btn{
-    width:38px; height:38px;
-    border-radius:50%;
-    border:none;
-    background:#ff6fa0;
-    color:#fff;
-    font-size:15px;
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer;
-    flex-shrink:0;
-  }
-  .play-btn:active{ transform:scale(0.92); }
-
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
   }
@@ -725,21 +711,19 @@
     <button class="key" data-k="0">0</button>
     <button class="key" data-k="del">⌫</button>
   </div>
-  <div class="hint">tanggal spesialmu yakk 🎂</div>
 </div>
 
 <!-- ============ PAGE 3 ============ -->
 <div class="page" id="page3">
   <div class="p3-eyebrow">For You</div>
   <div class="p3-title">Happy Birthday<br><em>Iin Anggun</em></div>
-  <p class="p3-text">
-    happy birthday to the girl who never judges me, 
-    loves me no matter what,
-    matches my energy, makes me laugh without even trying, 
-    and feels like my other half. i love you more and more.
-  </p>
+  <img class="side-sticker left" src="./stiker1.png?v=1" alt="Stiker kecil kiri">
+  <div class="sticker-photo" id="stickerPhoto" aria-label="Foto stiker Iin Anggun">
+    <img src="./stiker1.png?v=1" alt="Stiker Iin Anggun">
+  </div>
+  <img class="side-sticker right" src="./stiker1.png?v=1" alt="Stiker kecil kanan">
   <div class="calendar">
-    <div class="calendar-header">September</div>
+    <div class="calendar-header">October</div>
     <div class="cal-grid">
       <div class="cal-dayname">Sun</div>
       <div class="cal-dayname">Mon</div>
@@ -748,6 +732,9 @@
       <div class="cal-dayname">Thu</div>
       <div class="cal-dayname">Fri</div>
       <div class="cal-dayname">Sat</div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
+      <div class="cal-day empty"></div>
       <div class="cal-day empty"></div>
       <div class="cal-day">1</div>
       <div class="cal-day">2</div>
@@ -760,8 +747,8 @@
       <div class="cal-day">9</div>
       <div class="cal-day">10</div>
       <div class="cal-day">11</div>
-      <div class="cal-day marked">12</div>
-      <div class="cal-day">13</div>
+      <div class="cal-day">12</div>
+      <div class="cal-day marked">13</div>
       <div class="cal-day">14</div>
       <div class="cal-day">15</div>
       <div class="cal-day">16</div>
@@ -781,10 +768,9 @@
       <div class="cal-day">30</div>
     </div>
   </div>
-  <div class="polaroid">
-    <img class="ph-img" src="logo.jpeg" alt="Litle Iin" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'📷<br>taruh file logo.jpeg di folder yang sama'}))">
-    <div class="cap">my favorite bestie</div>
-  </div>
+  <p class="p3-text">
+    Happy birthday to my sweet and kind friend! I hope you'll always be surrounded by love and happiness. I hope this year brings you everything you have ever wished for. I'll always be proud of what you've done and will do. Having you in my life feels blessing every day.
+  </p>
   <button class="klik-btn" id="klikBtn">Klik</button>
 </div>
 
@@ -799,20 +785,6 @@
   </div>
 
   <button class="video-cta" id="videoCta">🎬 Lihat Video Kita</button>
-
-  <div class="player">
-    <div class="disc" id="disc"></div>
-    <div class="track-info">
-      <div class="track-title">Still The One</div>
-      <div class="track-artist">for you, today &amp; always</div>
-      <div class="progress-wrap" id="progressWrap">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-    </div>
-    <button class="play-btn" id="playBtn">▶</button>
-  </div>
-  <!-- letakkan file lagu "still-the-one.mp3" di folder yang sama dengan file HTML ini -->
-  <audio id="audio" src="still-the-one.mp3" preload="none"></audio>
 </div>
 
 <!-- ============ PAGE 5 (video) ============ -->
@@ -829,32 +801,21 @@
 
 <!-- ============ PAGE 6 (penutup) ============ -->
 <div class="page" id="page6">
-  <div class="p6-heart">🩷</div>
-  <div class="p6-title">Sekian dari aku</div>
-  <p class="p6-text">
-    Makasih udah mau baca dan buka semua ini sampai habis.
-    Semoga ulang tahun tahun ini jadi salah satu yang paling berkesan buat kamu.
-    Sehat terus, bahagia terus, dan sukses buat semua rencana kamu ke depan.
-    Selamat ulang tahun, sahabatku!
-  </p>
-  <div class="p6-sign">dari aku, buat kamu 🎉</div>
+  <img class="p6-logo" src="./stiker2.png?v=1" alt="Logo stiker2">
+  <div class="p6-title">That’s all from me</div>
+  <div class="p6-polaroids">
+    <div class="p6-polaroid">
+      <img src="./aib1.png?v=1" alt="Foto aib1">
+    </div>
+    <div class="p6-polaroid">
+      <img src="./aib2.png?v=1" alt="Foto aib2">
+    </div>
+  </div>
+  <div class="p6-thanks">Thank you bub 💗</div>
+  <div class="p6-handle">@aiidacantikk</div>
 </div>
 
 <script>
-  // ---------- floating petals ----------
-  const petalsContainer = document.getElementById('petals');
-  const petalEmojis = ['🌸','🌷','💮','🩷'];
-  for(let i=0;i<16;i++){
-    const p = document.createElement('div');
-    p.className = 'petal';
-    p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
-    p.style.left = Math.random()*100 + 'vw';
-    p.style.animationDuration = (7 + Math.random()*8) + 's';
-    p.style.animationDelay = (Math.random()*10) + 's';
-    p.style.fontSize = (16 + Math.random()*14) + 'px';
-    petalsContainer.appendChild(p);
-  }
-
   // ---------- page navigation ----------
   function goTo(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -865,7 +826,7 @@
   setTimeout(()=>{ goTo('page2'); }, 7000);
 
   // ---------- password lock ----------
-  const CORRECT = "120904";
+  const CORRECT = "131004";
   let entered = "";
   const dotsEl = document.getElementById('dots');
   const dots = dotsEl.querySelectorAll('.dot');
@@ -958,6 +919,14 @@
     galleryEl.appendChild(frame);
   });
 
+  // ---------- sticker on page 3 ----------
+  const stickerPhoto = document.getElementById('stickerPhoto');
+  const stickerImage = stickerPhoto.querySelector('img');
+  stickerImage.src = './stiker1.png?v=1';
+  stickerImage.addEventListener('error', () => {
+    stickerPhoto.innerHTML = '<div class="sticker-fallback">📷<br>stiker1.png belum tersedia</div>';
+  });
+
   // ---------- page3 -> page4 ----------
   document.getElementById('klikBtn').addEventListener('click', ()=>{
     goTo('page4');
@@ -977,42 +946,6 @@
   document.getElementById('toPenutup').addEventListener('click', ()=>{
     document.getElementById('mainVideo').pause();
     goTo('page6');
-  });
-
-  // ---------- music player ----------
-  const audio = document.getElementById('audio');
-  const playBtn = document.getElementById('playBtn');
-  const disc = document.getElementById('disc');
-  const progressFill = document.getElementById('progressFill');
-  const progressWrap = document.getElementById('progressWrap');
-
-  playBtn.addEventListener('click', ()=>{
-    if(audio.paused){
-      audio.play().catch(()=>{
-        alert('Taruh file "still-the-one.mp3" di folder yang sama dengan file HTML ini ya, biar lagunya bisa diputar 🎵');
-      });
-    } else {
-      audio.pause();
-    }
-  });
-
-  audio.addEventListener('play', ()=>{
-    playBtn.textContent = '❚❚';
-    disc.classList.add('spinning');
-  });
-  audio.addEventListener('pause', ()=>{
-    playBtn.textContent = '▶';
-    disc.classList.remove('spinning');
-  });
-  audio.addEventListener('timeupdate', ()=>{
-    if(audio.duration){
-      progressFill.style.width = (audio.currentTime/audio.duration*100) + '%';
-    }
-  });
-  progressWrap.addEventListener('click', (e)=>{
-    const rect = progressWrap.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    if(audio.duration){ audio.currentTime = ratio * audio.duration; }
   });
 </script>
 </body>
