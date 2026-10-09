@@ -377,8 +377,8 @@
     50%{ transform:scale(1); }
   }
   .sticker-photo{
-    width:min(42vw, 150px);
-    height:min(42vw, 150px);
+    width:min(52vw, 210px);
+    height:min(52vw, 210px);
     margin:0 auto 26px;
     position:relative;
     z-index:2;
@@ -504,11 +504,38 @@
     box-shadow:0 20px 40px -12px rgba(0,0,0,0.5);
     background:#000;
   }
-  .video-wrap iframe{
+  .video-wrap video{
     width:100%;
     height:100%;
     display:block;
     border:0;
+    background:#000;
+  }
+  .video-fallback{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+    background:linear-gradient(180deg, #1d0f1d 0%, #2f152c 100%);
+    color:#ffe7f3;
+    text-align:center;
+    padding:28px 18px;
+    gap:12px;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .video-open-btn{
+    border:none;
+    background:var(--rose-deep);
+    color:#fff;
+    padding:11px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(232,79,133,0.5);
   }
   .video-caption{
     color:#ffd6e8;
@@ -786,22 +813,31 @@
     <!-- 30 frame foto di-generate otomatis lewat JS di bawah, cari FOTO_CAPTIONS untuk ganti nama file & caption -->
   </div>
 
-  <button class="video-cta" id="videoCta">🎬 Lihat Video Kita</button>
+  <button class="video-cta" id="videoCta">Next</button>
 </div>
 
 <!-- ============ PAGE 5 (video) ============ -->
 <div class="page" id="page5">
   <div class="video-wrap">
-    <iframe
+    <div id="videoFallback" class="video-fallback" hidden>
+      <div>Video ini belum bisa diputar dari halaman ini karena akses Google Drive-nya dibatasi.</div>
+      <button class="video-open-btn" id="openVideoBtn" type="button">Buka video di tab baru</button>
+    </div>
+    <video
       id="mainVideo"
-      src="https://drive.google.com/file/d/1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe/view?usp=drivesdk"
+      controls
+      playsinline
+      preload="metadata"
       title="Video kenangan kita"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+    >
+      <source
+        src="https://drive.usercontent.google.com/download?id=1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe&export=download&confirm=t"
+        type="video/mp4"
+      >
+      Browser kamu tidak mendukung pemutar video.
+    </video>
   </div>
-  <div class="video-caption">kenangan kita, diputar ulang ✨</div>
-  <button class="next-btn" id="toPenutup">Lanjut →</button>
+  <button class="next-btn" id="toPenutup">Next</button>
 </div>
 
 <!-- ============ PAGE 6 (penutup) ============ -->
@@ -871,6 +907,14 @@
     playTone([520, 430], 0.11, 0.1);
   }
 
+  function playWrongSound(){
+    playTone([220, 180, 140], 0.18, 0.12);
+  }
+
+  function playCorrectSound(){
+    playTone([660, 880, 1100, 1320], 0.14, 0.13);
+  }
+
   function renderDots(){
     dots.forEach((d,i)=> d.classList.toggle('filled', i < entered.length));
   }
@@ -895,8 +939,10 @@
     if(entered.length === 6){
       setTimeout(()=>{
         if(entered === CORRECT){
+          playCorrectSound();
           goTo('page3');
         } else {
+          playWrongSound();
           dotsEl.classList.add('shake');
           setTimeout(()=>{
             dotsEl.classList.remove('shake');
@@ -983,6 +1029,26 @@
   document.getElementById('videoCta').addEventListener('click', ()=>{
     goTo('page5');
   });
+
+  // ---------- page5 video fallback ----------
+  const mainVideo = document.getElementById('mainVideo');
+  const videoFallback = document.getElementById('videoFallback');
+  const openVideoBtn = document.getElementById('openVideoBtn');
+  const driveVideoUrl = 'https://drive.google.com/file/d/1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe/view?usp=sharing';
+  const directVideoUrl = 'https://drive.usercontent.google.com/download?id=1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe&export=download&confirm=t';
+
+  function showVideoFallback(){
+    if (mainVideo) mainVideo.style.display = 'none';
+    if (videoFallback) videoFallback.hidden = false;
+  }
+
+  if (mainVideo) {
+    mainVideo.addEventListener('error', showVideoFallback);
+  }
+
+  if (openVideoBtn) {
+    openVideoBtn.addEventListener('click', ()=> window.open(directVideoUrl, '_blank', 'noopener'));
+  }
 
   // ---------- page5 -> page6 (penutup) ----------
   document.getElementById('toPenutup').addEventListener('click', ()=>{
