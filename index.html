@@ -528,6 +528,10 @@
     background:#000;
     object-fit:cover;
   }
+  .video-wrap video {
+    object-fit:contain;
+    background:#000;
+  }
   .video-open-btn{
     margin-top:16px;
     border:none;
@@ -817,12 +821,19 @@
 <!-- ============ PAGE 5 (video) ============ -->
 <div class="page" id="page5">
   <div class="video-wrap">
-    <iframe
+    <video
       id="mainVideo"
+      controls
+      playsinline
+      muted
+      preload="metadata"
+      x-webkit-airplay="allow"
+      webkit-playsinline="true"
       title="Video kenangan kita"
-      allow="autoplay; fullscreen"
-      allowfullscreen
-    ></iframe>
+    >
+      <source src="./video.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video HTML5.
+    </video>
   </div>
   <button class="video-open-btn" id="openVideoBtn" type="button">Buka video di tab baru</button>
   <button class="next-btn" id="toPenutup">Next</button>
@@ -1014,21 +1025,27 @@
   });
 
   // ---------- page4 -> page5 (video) ----------
-  const VIDEO_ID = '1wVPxVQEI_N92NnfVkPP84UHOgTox2mfe';
   const mainVideo = document.getElementById('mainVideo');
+  const localVideoUrl = './video.mp4';
 
   document.getElementById('videoCta').addEventListener('click', ()=>{
-    mainVideo.src = `https://drive.google.com/file/d/${VIDEO_ID}/preview`;
+    if (mainVideo) {
+      mainVideo.setAttribute('src', localVideoUrl);
+      mainVideo.load();
+    }
     goTo('page5');
   });
 
   document.getElementById('openVideoBtn').addEventListener('click', ()=>{
-    window.open(`https://drive.google.com/file/d/${VIDEO_ID}/view`, '_blank', 'noopener');
+    window.open(localVideoUrl, '_blank', 'noopener');
   });
 
   // ---------- page5 -> page6 (penutup) ----------
   document.getElementById('toPenutup').addEventListener('click', ()=>{
-    mainVideo.src = 'about:blank'; // hentikan video
+    if (mainVideo) {
+      mainVideo.pause();
+      mainVideo.currentTime = 0;
+    }
     goTo('page6');
   });
 </script>
