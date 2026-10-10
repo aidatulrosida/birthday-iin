@@ -284,6 +284,39 @@
     padding-top:40px;
     padding-bottom:40px;
   }
+  .p3-love-decor{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .p3-love{
+    position:absolute;
+    color:#ec7ca3;
+    font-size:clamp(22px, 6vw, 34px);
+    text-shadow:0 4px 12px rgba(207,84,132,0.2);
+    animation:p5HeartFloat 3.8s ease-in-out infinite;
+  }
+  .p3-love-one{ top:12%; left:7%; animation-delay:-1.2s; }
+  .p3-love-two{ top:27%; right:7%; font-size:clamp(19px, 5vw, 28px); animation-delay:-2.4s; }
+  .p3-love-three{ bottom:24%; left:8%; font-size:clamp(18px, 4.5vw, 26px); animation-delay:-0.4s; }
+  .p3-love-four{ top:8%; right:23%; font-size:clamp(14px, 3.5vw, 20px); animation-delay:-1.9s; }
+  .p3-love-five{ bottom:13%; right:12%; font-size:clamp(16px, 4vw, 22px); animation-delay:-0.9s; }
+  .p3-love-six{ top:48%; left:5%; font-size:clamp(16px, 4vw, 23px); animation-delay:-1.5s; }
+  .p3-love-seven{ top:57%; right:5%; font-size:clamp(20px, 5vw, 29px); animation-delay:-2.1s; }
+  .p3-love-eight{ top:76%; left:18%; font-size:clamp(13px, 3.5vw, 19px); animation-delay:-0.7s; }
+  .p3-love-nine{ top:39%; right:17%; font-size:clamp(14px, 3.8vw, 21px); animation-delay:-1.8s; }
+  .p3-love-ten{ bottom:5%; left:48%; font-size:clamp(17px, 4.2vw, 24px); animation-delay:-2.6s; }
+  .p3-eyebrow,
+  .p3-title,
+  .calendar,
+  .p3-text,
+  .klik-btn,
+  #page3 > .balloon-garden{
+    position:relative;
+    z-index:1;
+  }
   .p3-eyebrow{
     font-size:13px;
     letter-spacing:3px;
@@ -492,6 +525,37 @@
     overflow-y:auto;
   }
   #page4.active{ display:flex; }
+  .p4-love-decor{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .p4-love{
+    position:absolute;
+    color:#ec7ca3;
+    font-size:clamp(22px, 6vw, 34px);
+    text-shadow:0 4px 12px rgba(207,84,132,0.2);
+    animation:p5HeartFloat 3.8s ease-in-out infinite;
+  }
+  .p4-love-one{ top:12%; left:5%; animation-delay:-1.2s; }
+  .p4-love-two{ top:25%; right:5%; font-size:clamp(19px, 5vw, 28px); animation-delay:-2.4s; }
+  .p4-love-three{ top:46%; left:4%; font-size:clamp(18px, 4.5vw, 26px); animation-delay:-0.4s; }
+  .p4-love-four{ top:8%; right:22%; font-size:clamp(14px, 3.5vw, 20px); animation-delay:-1.9s; }
+  .p4-love-five{ top:55%; right:4%; font-size:clamp(16px, 4vw, 22px); animation-delay:-0.9s; }
+  .p4-love-six{ top:70%; left:8%; font-size:clamp(16px, 4vw, 23px); animation-delay:-1.5s; }
+  .p4-love-seven{ top:75%; right:8%; font-size:clamp(20px, 5vw, 29px); animation-delay:-2.1s; }
+  .p4-love-eight{ top:37%; left:16%; font-size:clamp(13px, 3.5vw, 19px); animation-delay:-0.7s; }
+  .p4-love-nine{ top:38%; right:16%; font-size:clamp(14px, 3.8vw, 21px); animation-delay:-1.8s; }
+  .p4-love-ten{ top:88%; left:48%; font-size:clamp(17px, 4.2vw, 24px); animation-delay:-2.6s; }
+  .p4-header,
+  .gallery,
+  #page4 > .video-cta,
+  #page4 > .balloon-garden{
+    position:relative;
+    z-index:1;
+  }
   .p4-header{
     text-align:center;
     margin-bottom:22px;
@@ -585,7 +649,7 @@
     top:0;
     left:0;
     width:100%;
-    height:92px;
+    height:110px;
     pointer-events:none;
   }
   .p6-curtain::before{
@@ -594,21 +658,20 @@
     top:0;
     left:0;
     width:100%;
-    height:9px;
-    background:linear-gradient(180deg,#d998b2,#f1c8d8 48%,#d998b2);
-    box-shadow:0 3px 8px rgba(92,42,77,0.14);
+    height:11px;
+    background:linear-gradient(180deg,#c986a3 0%,#f7dbe6 42%,#d99ab4 100%);
+    box-shadow:0 3px 9px rgba(92,42,77,0.18);
   }
   .p6-curtain::after{
     content:"";
     position:absolute;
-    inset:9px 0 auto;
-    height:78px;
+    inset:11px 0 auto;
+    height:96px;
     background:
-      radial-gradient(circle,rgba(255,255,255,0.95) 0 2px,transparent 2.6px) 13px 68px / 34px 12px repeat-x,
-      radial-gradient(circle,rgba(208,143,169,0.88) 0 2px,transparent 2.6px) 13px 68px / 34px 12px repeat-x,
-      repeating-linear-gradient(90deg,transparent 0 16px,rgba(205,143,167,0.72) 16px 17px,rgba(255,255,255,0.65) 17px 18px,transparent 18px 34px);
-    mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
-    filter:drop-shadow(0 3px 3px rgba(92,42,77,0.12));
+      repeating-linear-gradient(90deg,rgba(255,255,255,0.62) 0 9px,rgba(198,126,157,0.12) 9px 18px,rgba(255,255,255,0.36) 18px 27px,rgba(172,99,133,0.1) 27px 36px),
+      linear-gradient(180deg,#f9e8ef 0%,#f3d7e2 72%,#e9bfd0 100%);
+    clip-path:polygon(0 0,100% 0,100% 84%,95% 100%,90% 84%,85% 100%,80% 84%,75% 100%,70% 84%,65% 100%,60% 84%,55% 100%,50% 84%,45% 100%,40% 84%,35% 100%,30% 84%,25% 100%,20% 84%,15% 100%,10% 84%,5% 100%,0 84%);
+    filter:drop-shadow(0 5px 5px rgba(92,42,77,0.14));
   }
 
   /* ================= PAGE 5 (video) ================= */
@@ -1049,6 +1112,18 @@
 
 <!-- ============ PAGE 3 ============ -->
 <div class="page" id="page3">
+  <div class="p3-love-decor" aria-hidden="true">
+    <span class="p3-love p3-love-one">♥</span>
+    <span class="p3-love p3-love-two">♡</span>
+    <span class="p3-love p3-love-three">♥</span>
+    <span class="p3-love p3-love-four">✧</span>
+    <span class="p3-love p3-love-five">♡</span>
+    <span class="p3-love p3-love-six">♡</span>
+    <span class="p3-love p3-love-seven">♥</span>
+    <span class="p3-love p3-love-eight">✦</span>
+    <span class="p3-love p3-love-nine">✧</span>
+    <span class="p3-love p3-love-ten">★</span>
+  </div>
   <div class="p3-eyebrow">For You</div>
   <div class="p3-title">Happy Birthday<br><em>Iin Anggun</em></div>
   <img class="side-sticker left" src="./stiker1.png?v=1" alt="Stiker kecil kiri">
@@ -1117,6 +1192,18 @@
 
 <!-- ============ PAGE 4 ============ -->
 <div class="page" id="page4">
+  <div class="p4-love-decor" aria-hidden="true">
+    <span class="p4-love p4-love-one">♥</span>
+    <span class="p4-love p4-love-two">♡</span>
+    <span class="p4-love p4-love-three">♥</span>
+    <span class="p4-love p4-love-four">✧</span>
+    <span class="p4-love p4-love-five">♡</span>
+    <span class="p4-love p4-love-six">♡</span>
+    <span class="p4-love p4-love-seven">♥</span>
+    <span class="p4-love p4-love-eight">✦</span>
+    <span class="p4-love p4-love-nine">✧</span>
+    <span class="p4-love p4-love-ten">★</span>
+  </div>
   <div class="p4-header">
     <button class="back-btn" id="backBtn">←</button>
     <div class="p4-title">Little Gallery</div>
