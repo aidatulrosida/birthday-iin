@@ -557,7 +557,7 @@
     top:0;
     left:0;
     width:100%;
-    height:138px;
+    height:92px;
     pointer-events:none;
   }
   .p6-curtain::before{
@@ -566,21 +566,20 @@
     top:0;
     left:0;
     width:100%;
-    height:13px;
-    background:linear-gradient(180deg,#f8c1d8,#e88aaf);
-    box-shadow:0 4px 10px rgba(92,42,77,0.16);
+    height:9px;
+    background:linear-gradient(180deg,#f3c2d5,#df9ab7);
+    box-shadow:0 3px 8px rgba(92,42,77,0.12);
   }
   .p6-curtain::after{
     content:"";
     position:absolute;
-    inset:12px 0 auto;
-    height:116px;
+    inset:9px 0 auto;
+    height:70px;
     background:
-      radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.3) 0 12%,transparent 13%) 0 100% / 25% 22px repeat-x,
-      repeating-linear-gradient(90deg,#b94376 0 9%,#d76091 10% 17%,#a93669 18% 23%,#d76091 24% 34%);
-    border-radius:0 0 50% 50% / 0 0 10% 10%;
-    clip-path:polygon(0 0,100% 0,100% 83%,95% 100%,90% 83%,85% 100%,80% 83%,75% 100%,70% 83%,65% 100%,60% 83%,55% 100%,50% 83%,45% 100%,40% 83%,35% 100%,30% 83%,25% 100%,20% 83%,15% 100%,10% 83%,5% 100%,0 83%);
-    box-shadow:inset 0 -8px 12px rgba(92,42,77,0.12);
+      repeating-linear-gradient(90deg,rgba(255,255,255,0.18) 0 2px,transparent 2px 42px),
+      linear-gradient(180deg,#e7a9c1 0%,#f1c6d7 72%,#e8afc5 100%);
+    border-radius:0 0 24px 24px;
+    box-shadow:0 8px 18px -12px rgba(92,42,77,0.3),inset 0 -1px 0 rgba(255,255,255,0.55);
   }
 
   /* ================= PAGE 5 (video) ================= */
@@ -887,18 +886,6 @@
     object-fit:cover;
     border-radius:3px;
   }
-  .p6-thanks{
-    position:relative;
-    z-index:1;
-    max-width:460px;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:clamp(32px, 7vw, 42px);
-    font-weight:600;
-    color:var(--rose-deep);
-    line-height:1.05;
-    text-shadow:0 2px 10px rgba(232,79,133,0.1);
-  }
   .p6-handle{
     position:relative;
     z-index:1;
@@ -1171,7 +1158,6 @@
         <img src="./aib2.png?v=1" alt="Foto aib2">
       </div>
     </div>
-    <div class="p6-thanks">Thank you bub 💗</div>
     <div class="p6-handle">@aiidacantikk</div>
   </div>
   <div class="balloon-garden" aria-hidden="true">
