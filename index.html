@@ -411,20 +411,20 @@
   .side-sticker{
     position:absolute;
     top:22%;
-    width:clamp(50px, 12vw, 76px);
-    height:clamp(50px, 12vw, 76px);
+    width:clamp(64px, 16vw, 100px);
+    height:clamp(64px, 16vw, 100px);
     z-index:1;
     opacity:0.85;
     filter:drop-shadow(0 7px 10px rgba(232,79,133,0.2));
     pointer-events:none;
   }
   .side-sticker.left{
-    left:calc(50% - 125px);
+    left:calc(50% - 155px);
     top:31%;
     animation:sideStickerLeft 4s ease-in-out infinite;
   }
   .side-sticker.right{
-    right:calc(50% - 125px);
+    right:calc(50% - 155px);
     top:31%;
     animation:sideStickerRight 4.6s ease-in-out infinite;
   }
@@ -486,7 +486,7 @@
   }
   .back-btn:active{ transform:scale(0.92); }
   .video-cta{
-    margin:26px 0 130px;
+    margin:26px 0 0;
     border:none;
     background:var(--plum);
     color:#fff;
@@ -500,18 +500,100 @@
     box-shadow:0 10px 24px -8px rgba(92,42,77,0.5);
   }
   .video-cta:active{ transform:scale(0.96); }
+  .balloon-garden{
+    position:relative;
+    width:min(100%, 360px);
+    height:150px;
+    flex:none;
+    margin:12px auto 0;
+    pointer-events:none;
+  }
+  .balloon{
+    position:absolute;
+    bottom:18px;
+    width:42px;
+    height:54px;
+    border-radius:50% 50% 46% 46%;
+    box-shadow:inset -7px -5px 0 rgba(92,42,77,0.1), 0 7px 12px rgba(92,42,77,0.12);
+    animation:balloonFloat 3.2s ease-in-out infinite;
+  }
+  .balloon::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-6px;
+    transform:translateX(-50%);
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:7px solid currentColor;
+  }
+  .balloon::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:calc(100% + 1px);
+    width:1px;
+    height:42px;
+    background:rgba(92,42,77,0.35);
+    transform-origin:top;
+    animation:balloonString 2.4s ease-in-out infinite;
+  }
+  .balloon:nth-child(1){ left:10%; color:#ff8caf; background:linear-gradient(135deg,#ffb6cb,#ff719a); animation-delay:-0.6s; }
+  .balloon:nth-child(2){ left:29%; bottom:34px; color:#c99be8; background:linear-gradient(135deg,#e6c7f4,#bd8bdd); animation-delay:-1.4s; }
+  .balloon:nth-child(3){ left:49%; color:#ffd16f; background:linear-gradient(135deg,#ffe6a1,#ffc34c); animation-delay:-0.2s; }
+  .balloon:nth-child(4){ left:69%; bottom:38px; color:#91d9d1; background:linear-gradient(135deg,#b8eee5,#75c9bd); animation-delay:-1.8s; }
+  .balloon:nth-child(5){ left:86%; color:#ff9a84; background:linear-gradient(135deg,#ffc0ad,#ff876a); animation-delay:-1s; }
+  @keyframes balloonFloat{
+    0%,100%{ transform:translateY(0) rotate(-4deg); }
+    50%{ transform:translateY(-13px) rotate(4deg); }
+  }
+  @keyframes balloonString{
+    0%,100%{ transform:translateX(-50%) rotate(-5deg); }
+    50%{ transform:translateX(-50%) rotate(5deg); }
+  }
+  .p6-curtain{
+    position:absolute;
+    z-index:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:138px;
+    pointer-events:none;
+  }
+  .p6-curtain::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:13px;
+    background:linear-gradient(180deg,#f8c1d8,#e88aaf);
+    box-shadow:0 4px 10px rgba(92,42,77,0.16);
+  }
+  .p6-curtain::after{
+    content:"";
+    position:absolute;
+    inset:12px 0 auto;
+    height:116px;
+    background:
+      radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.3) 0 12%,transparent 13%) 0 100% / 25% 22px repeat-x,
+      repeating-linear-gradient(90deg,#b94376 0 9%,#d76091 10% 17%,#a93669 18% 23%,#d76091 24% 34%);
+    border-radius:0 0 50% 50% / 0 0 10% 10%;
+    clip-path:polygon(0 0,100% 0,100% 83%,95% 100%,90% 83%,85% 100%,80% 83%,75% 100%,70% 83%,65% 100%,60% 83%,55% 100%,50% 83%,45% 100%,40% 83%,35% 100%,30% 83%,25% 100%,20% 83%,15% 100%,10% 83%,5% 100%,0 83%);
+    box-shadow:inset 0 -8px 12px rgba(92,42,77,0.12);
+  }
 
   /* ================= PAGE 5 (video) ================= */
   #page5{
     background:#1a0e17;
-    padding:24px;
+    padding:16px;
     display:flex;
     align-items:center;
     justify-content:center;
     flex-direction:column;
   }
   .video-wrap{
-    width:min(90vw, 980px);
+    width:min(100%, 980px);
     aspect-ratio:16/9;
     max-height:72vh;
     border-radius:14px;
@@ -532,19 +614,6 @@
     object-fit:contain;
     background:#000;
   }
-  .video-open-btn{
-    margin-top:16px;
-    border:none;
-    background:rgba(255,255,255,0.12);
-    color:#ffe7f3;
-    padding:10px 20px;
-    border-radius:999px;
-    font-family:'Quicksand', sans-serif;
-    font-weight:700;
-    font-size:13px;
-    cursor:pointer;
-  }
-  .video-open-btn:active{ transform:scale(0.96); }
   .next-btn{
     margin-top:18px;
     border:none;
@@ -561,18 +630,62 @@
   }
   .next-btn:active{ transform:scale(0.96); }
 
+  @media (max-width:600px){
+    #page5{ padding:12px; }
+    .video-wrap{
+      max-height:calc(100vh - 100px);
+      max-height:calc(100dvh - 100px);
+      border-radius:10px;
+    }
+    .next-btn{ margin-top:12px; }
+  }
+
   /* ================= PAGE 6 (penutup) ================= */
   #page6{
-    background:transparent;
+    background:
+      radial-gradient(ellipse at 12% 42%,rgba(255,255,255,0.8),transparent 30%),
+      radial-gradient(ellipse at 88% 58%,rgba(255,255,255,0.65),transparent 32%),
+      linear-gradient(155deg,#fff9fc 0%,#ffeaf3 54%,#f9d9e8 100%);
     text-align:center;
-    padding:20px 24px;
+    padding:30px 18px 22px;
     overflow-y:auto;
   }
+  .p6-card{
+    position:relative;
+    z-index:1;
+    top:61px;
+    width:min(100%, 520px);
+    padding:28px 20px 24px;
+    border:1px solid rgba(255,255,255,0.9);
+    border-radius:30px;
+    background:linear-gradient(145deg,rgba(255,255,255,0.94),rgba(255,249,252,0.82));
+    box-shadow:0 22px 55px -30px rgba(126,45,91,0.48), inset 0 0 0 1px rgba(255,183,209,0.28);
+    backdrop-filter:blur(12px);
+  }
+  .p6-card::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px solid rgba(232,184,138,0.32);
+    border-radius:23px;
+    pointer-events:none;
+  }
+  .p6-eyebrow{
+    position:relative;
+    z-index:1;
+    margin-bottom:5px;
+    color:#b77b9a;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:3px;
+  }
   .p6-logo{
-    width:min(34vw, 150px);
+    position:relative;
+    z-index:1;
+    width:min(36vw, 148px);
     aspect-ratio:1;
     display:block;
-    margin:0 auto 12px;
+    margin:0 auto 8px;
     object-fit:contain;
     filter:drop-shadow(0 12px 16px rgba(126,45,91,0.22));
     animation:p6LogoSway 2.8s ease-in-out infinite;
@@ -582,55 +695,109 @@
     50%{ transform:rotate(3deg) scale(1.025); }
   }
   .p6-title{
+    position:relative;
+    z-index:1;
     font-family:'Playfair Display', serif;
     font-style:italic;
     font-weight:700;
-    font-size:clamp(30px, 6vw, 42px);
+    font-size:clamp(28px, 6vw, 40px);
     color:var(--rose-deep);
-    margin-bottom:14px;
+    margin-bottom:12px;
+    text-shadow:0 3px 12px rgba(232,79,133,0.12);
+  }
+  .p6-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:0 auto 16px;
+    color:#d99a62;
+    font-size:11px;
+    letter-spacing:3px;
+  }
+  .p6-divider::before,
+  .p6-divider::after{
+    content:"";
+    width:42px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(217,154,98,0.65));
+  }
+  .p6-divider::after{
+    transform:scaleX(-1);
   }
   .p6-polaroids{
+    position:relative;
+    z-index:1;
     display:flex;
     flex-direction:row;
     align-items:center;
     justify-content:center;
-    gap:18px;
-    margin-bottom:18px;
+    gap:14px;
+    margin-bottom:20px;
   }
   .p6-polaroid{
-    width:min(43vw, 205px);
-    aspect-ratio:1;
-    padding:9px 9px 28px;
-    background:#fff;
-    border-radius:3px;
-    box-shadow:0 18px 36px -20px rgba(106,35,78,0.7);
-    transform:rotate(-3deg);
+    position:relative;
+    width:min(38vw, 180px);
+    aspect-ratio:0.86;
+    padding:9px 9px 29px;
+    background:linear-gradient(150deg,#fff 0%,#fff 76%,#fff5f9 100%);
+    border:1px solid rgba(255,219,232,0.9);
+    border-radius:7px;
+    box-shadow:0 16px 28px -17px rgba(106,35,78,0.62), inset 0 0 0 3px rgba(255,245,249,0.9);
+    transform:rotate(-3deg) translateY(-2px);
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .p6-polaroid::after{
+    content:"♡";
+    position:absolute;
+    left:50%;
+    bottom:5px;
+    transform:translateX(-50%);
+    color:#d895aa;
+    font-family:'Playfair Display',serif;
+    font-size:15px;
+    line-height:1;
   }
   .p6-polaroid:nth-child(2){
-    transform:rotate(4deg) translateX(14px);
+    transform:rotate(4deg) translateY(4px);
   }
   .p6-polaroid img{
     width:100%;
-    height:calc(100% - 19px);
+    height:100%;
     display:block;
     object-fit:cover;
-    border-radius:2px;
+    border-radius:3px;
   }
   .p6-thanks{
+    position:relative;
+    z-index:1;
     max-width:460px;
     font-family:'Caveat', cursive;
     font-size:clamp(28px, 5.5vw, 38px);
     font-weight:700;
-    color:#e84f85;
+    color:var(--rose-deep);
     line-height:1.25;
+    text-shadow:0 2px 10px rgba(232,79,133,0.1);
   }
   .p6-handle{
+    position:relative;
+    z-index:1;
     margin-top:8px;
     font-family:'Quicksand', sans-serif;
     font-size:13px;
     font-weight:700;
-    color:var(--plum-soft);
+    color:#96627f;
     letter-spacing:0.5px;
+  }
+  #page6 .balloon-garden{
+    position:relative;
+    top:25px;
+  }
+  @media (hover:hover){
+    .p6-polaroid:hover{
+      transform:rotate(0) translateY(-5px);
+      box-shadow:0 20px 34px -17px rgba(106,35,78,0.56);
+    }
   }
   .p4-title{
     font-family:'Playfair Display', serif;
@@ -803,6 +970,13 @@
     Happy birthday to my sweet and kind friend! I hope you'll always be surrounded by love and happiness. I hope this year brings you everything you have ever wished for. I'll always be proud of what you've done and will do. Having you in my life feels blessing every day.
   </p>
   <button class="klik-btn" id="klikBtn">Klik</button>
+  <div class="balloon-garden" aria-hidden="true">
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+  </div>
 </div>
 
 <!-- ============ PAGE 4 ============ -->
@@ -816,6 +990,13 @@
   </div>
 
   <button class="video-cta" id="videoCta">Next</button>
+  <div class="balloon-garden" aria-hidden="true">
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+  </div>
 </div>
 
 <!-- ============ PAGE 5 (video) ============ -->
@@ -835,24 +1016,35 @@
       Browser kamu tidak mendukung video HTML5.
     </video>
   </div>
-  <button class="video-open-btn" id="openVideoBtn" type="button">Buka video di tab baru</button>
   <button class="next-btn" id="toPenutup">Next</button>
 </div>
 
 <!-- ============ PAGE 6 (penutup) ============ -->
 <div class="page" id="page6">
-  <img class="p6-logo" src="./stiker2.png?v=1" alt="Logo stiker2">
-  <div class="p6-title">That’s all from me</div>
-  <div class="p6-polaroids">
-    <div class="p6-polaroid">
-      <img src="./aib1.png?v=1" alt="Foto aib1">
+  <div class="p6-curtain" aria-hidden="true"></div>
+  <div class="p6-card">
+    <div class="p6-eyebrow">A LITTLE NOTE FOR YOU</div>
+    <img class="p6-logo" src="./stiker2.png?v=1" alt="Logo stiker2">
+    <div class="p6-title">That’s all from me</div>
+    <div class="p6-divider" aria-hidden="true">♡</div>
+    <div class="p6-polaroids">
+      <div class="p6-polaroid">
+        <img src="./aib1.png?v=1" alt="Foto aib1">
+      </div>
+      <div class="p6-polaroid">
+        <img src="./aib2.png?v=1" alt="Foto aib2">
+      </div>
     </div>
-    <div class="p6-polaroid">
-      <img src="./aib2.png?v=1" alt="Foto aib2">
-    </div>
+    <div class="p6-thanks">Thank you bub 💗</div>
+    <div class="p6-handle">@aiidacantikk</div>
   </div>
-  <div class="p6-thanks">Thank you bub 💗</div>
-  <div class="p6-handle">@aiidacantikk</div>
+  <div class="balloon-garden" aria-hidden="true">
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+    <span class="balloon"></span>
+  </div>
 </div>
 
 <script>
@@ -1034,10 +1226,6 @@
       mainVideo.load();
     }
     goTo('page5');
-  });
-
-  document.getElementById('openVideoBtn').addEventListener('click', ()=>{
-    window.open(localVideoUrl, '_blank', 'noopener');
   });
 
   // ---------- page5 -> page6 (penutup) ----------
