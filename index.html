@@ -585,7 +585,9 @@
 
   /* ================= PAGE 5 (video) ================= */
   #page5{
-    background:#1a0e17;
+    background:
+      radial-gradient(ellipse at 50% 48%,rgba(255,255,255,0.98) 0%,rgba(255,244,249,0.96) 37%,transparent 72%),
+      linear-gradient(155deg,#f9dce9 0%,#fff7fb 48%,#f2d4e4 100%);
     padding:16px;
     display:flex;
     align-items:center;
@@ -595,13 +597,29 @@
   .p5-party-decor{
     position:absolute;
     inset:0;
-    z-index:0;
+    z-index:2;
     overflow:hidden;
     pointer-events:none;
   }
+  .p5-hearts{
+    position:absolute;
+    color:#ec7ca3;
+    font-size:clamp(22px, 6vw, 34px);
+    text-shadow:0 4px 12px rgba(207,84,132,0.2);
+    animation:p5HeartFloat 3.8s ease-in-out infinite;
+  }
+  .p5-heart-one{ top:18%; left:24%; animation-delay:-1.2s; }
+  .p5-heart-two{ top:34%; right:18%; font-size:clamp(19px, 5vw, 28px); animation-delay:-2.4s; }
+  .p5-heart-three{ bottom:19%; left:28%; font-size:clamp(18px, 4.5vw, 26px); animation-delay:-0.4s; }
+  .p5-heart-four{ top:13%; right:30%; font-size:clamp(14px, 3.5vw, 20px); animation-delay:-1.9s; }
+  .p5-heart-five{ bottom:25%; right:25%; font-size:clamp(16px, 4vw, 22px); animation-delay:-0.9s; }
+  @keyframes p5HeartFloat{
+    0%,100%{ transform:translateY(0) rotate(-8deg) scale(1); opacity:0.72; }
+    50%{ transform:translateY(-12px) rotate(8deg) scale(1.12); opacity:1; }
+  }
   .p5-balloon{
     position:absolute;
-    width:clamp(30px, 8vw, 52px);
+    width:clamp(28px, 7vw, 46px);
     aspect-ratio:0.78;
     border-radius:50% 50% 46% 46%;
     box-shadow:inset -7px -5px 0 rgba(26,14,23,0.12), 0 8px 20px rgba(255,183,209,0.12);
@@ -623,41 +641,41 @@
     top:calc(100% + 1px);
     left:50%;
     height:48px;
-    border-left:1px solid rgba(255,232,243,0.5);
+    border-left:1px solid rgba(150,91,121,0.4);
     transform-origin:top;
     animation:balloonString 2.8s ease-in-out infinite;
   }
-  .p5-balloon:nth-child(1){
-    top:14%;
-    left:8%;
+  .p5-balloon:nth-child(6){
+    top:12%;
+    left:7%;
     color:#ff8caf;
     background:linear-gradient(135deg,#ffb6cb,#ff719a);
     animation-delay:-0.7s;
   }
-  .p5-balloon:nth-child(2){
-    top:25%;
-    right:9%;
+  .p5-balloon:nth-child(7){
+    top:22%;
+    right:7%;
     color:#c99be8;
     background:linear-gradient(135deg,#e6c7f4,#bd8bdd);
     animation-delay:-1.7s;
   }
-  .p5-balloon:nth-child(3){
-    bottom:27%;
-    left:8%;
+  .p5-balloon:nth-child(8){
+    bottom:20%;
+    left:7%;
     color:#ffd16f;
     background:linear-gradient(135deg,#ffe6a1,#ffc34c);
     animation-delay:-2.3s;
   }
   .p5-cake{
     position:absolute;
-    bottom:15%;
-    font-size:clamp(32px, 8vw, 52px);
+    bottom:8%;
+    font-size:clamp(27px, 7vw, 44px);
     line-height:1;
     filter:drop-shadow(0 8px 12px rgba(255,183,209,0.24));
     animation:cakeBob 3s ease-in-out infinite;
   }
-  .p5-cake:nth-child(4){ left:8%; transform:rotate(-9deg); }
-  .p5-cake:nth-child(5){ right:8%; animation-delay:-1.2s; }
+  .p5-cake:nth-child(9){ left:8%; transform:rotate(-9deg); }
+  .p5-cake:nth-child(10){ right:8%; animation-delay:-1.2s; }
   @keyframes cakeBob{
     0%,100%{ translate:0 0; }
     50%{ translate:0 -8px; }
@@ -665,13 +683,15 @@
   .video-wrap{
     position:relative;
     z-index:1;
-    width:min(100%, 980px);
+    width:min(100%, 920px);
     aspect-ratio:16/9;
     max-height:72vh;
-    border-radius:14px;
+    padding:7px;
+    border:1px solid rgba(255,255,255,0.95);
+    border-radius:20px;
     overflow:hidden;
-    box-shadow:0 20px 40px -12px rgba(255,183,209,0.4);
-    background:#000;
+    box-shadow:0 22px 55px -24px rgba(154,75,117,0.44),0 0 0 5px rgba(255,255,255,0.28);
+    background:linear-gradient(135deg,#fff,#f3bad1 50%,#fff2f8);
   }
   .video-wrap video,
   .video-wrap iframe{
@@ -684,14 +704,15 @@
   }
   .video-wrap video {
     object-fit:contain;
-    background:#000;
+    border-radius:13px;
+    background:#140c12;
   }
   .next-btn{
     position:relative;
     z-index:1;
     margin-top:18px;
     border:none;
-    background:var(--rose-deep);
+    background:linear-gradient(135deg,#ff8eb1,#e84f85);
     color:#fff;
     padding:12px 34px;
     border-radius:40px;
@@ -700,9 +721,31 @@
     font-size:14px;
     letter-spacing:0.5px;
     cursor:pointer;
-    box-shadow:0 10px 24px -8px rgba(232,79,133,0.5);
+    box-shadow:0 12px 26px -8px rgba(232,79,133,0.5),inset 0 1px 0 rgba(255,255,255,0.35);
   }
   .next-btn:active{ transform:scale(0.96); }
+  .p5-heading{
+    position:relative;
+    z-index:1;
+    margin-bottom:17px;
+    text-align:center;
+  }
+  .p5-eyebrow{
+    color:#a66c89;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:3px;
+  }
+  .p5-title{
+    color:#b94778;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(27px, 7vw, 38px);
+    font-style:italic;
+    font-weight:600;
+    line-height:1;
+    text-shadow:0 3px 12px rgba(232,79,133,0.12);
+  }
 
   @media (max-width:600px){
     #page5{ padding:12px; }
@@ -712,6 +755,7 @@
       border-radius:10px;
     }
     .next-btn{ margin-top:12px; }
+    .p5-heading{ margin-bottom:14px; }
   }
 
   /* ================= PAGE 6 (penutup) ================= */
@@ -1077,6 +1121,10 @@
 
 <!-- ============ PAGE 5 (video) ============ -->
 <div class="page" id="page5">
+  <div class="p5-heading">
+    <div class="p5-eyebrow">A LITTLE MOMENT FOR YOU</div>
+    <div class="p5-title">Made with love <span aria-hidden="true">♡</span></div>
+  </div>
   <div class="video-wrap">
     <video
       id="mainVideo"
@@ -1094,6 +1142,11 @@
   </div>
   <button class="next-btn" id="toPenutup">Next</button>
   <div class="p5-party-decor" aria-hidden="true">
+    <span class="p5-hearts p5-heart-one">♥</span>
+    <span class="p5-hearts p5-heart-two">♡</span>
+    <span class="p5-hearts p5-heart-three">♥</span>
+    <span class="p5-hearts p5-heart-four">✧</span>
+    <span class="p5-hearts p5-heart-five">♡</span>
     <span class="p5-balloon"></span>
     <span class="p5-balloon"></span>
     <span class="p5-balloon"></span>
