@@ -262,7 +262,6 @@
     font-size:var(--burst-size);
     line-height:1;
     opacity:0;
-    filter:drop-shadow(0 3px 6px rgba(210,75,132,0.22));
     animation:loveBurstOut 2.8s cubic-bezier(0.12,0.62,0.34,1) var(--burst-delay) forwards;
   }
   @keyframes loveBurstOut{
@@ -1273,7 +1272,8 @@
   const loveBurst = document.getElementById('loveBurst');
   function playLoveBurst(){
     loveBurst.replaceChildren();
-    for(let i = 0; i < 520; i++){
+    const heartCount = window.innerWidth <= 600 ? 120 : 260;
+    for(let i = 0; i < heartCount; i++){
       const heart = document.createElement('span');
       const angle = Math.random() * Math.PI * 2;
       const distance = Math.hypot(window.innerWidth, window.innerHeight) * (0.52 + Math.random() * 0.42);
